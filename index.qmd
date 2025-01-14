@@ -1,0 +1,30 @@
+---
+title: "Author citation list"
+author: "Sylvain Schmitt"
+format: html
+editor: visual
+---
+
+# Scholar
+
+```{r}
+#| results: asis
+library(scholar)
+
+scholar_id <- "3n0aRksAAAAJ" 
+# this is your author scholar Id, it'll be found in the adress of your scholar profile after user=and before &
+# exemple with Daniel Luis Mascia Vieira
+
+#Get publication record from scholar
+df <- get_publications(scholar_id)
+colnames(df) <- c("title","authors","journal","number",
+                  "total_citations","publication_date","cid","pubid")
+# unfortunately the doi is not linked, so I'll just format all articles:
+format_publications(scholar_id, "Vieira") |> cat(sep='\n\n')
+```
+
+# ORCID
+
+```{r}
+library(rorcid)
+```

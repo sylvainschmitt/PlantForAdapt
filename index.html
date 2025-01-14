@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Sylvain Schmitt">
+
+<title>Author citation list</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Author citation list</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Sylvain Schmitt </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="scholar" class="level1">
+<h1>Scholar</h1>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scholar)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>scholar_id <span class="ot">&lt;-</span> <span class="st">"3n0aRksAAAAJ"</span> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># this is your author scholar Id, it'll be found in the adress of your scholar profile after user=and before &amp;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># exemple with Daniel Luis Mascia Vieira</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Get publication record from scholar</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">get_publications</span>(scholar_id)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"title"</span>,<span class="st">"authors"</span>,<span class="st">"journal"</span>,<span class="st">"number"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"total_citations"</span>,<span class="st">"publication_date"</span>,<span class="st">"cid"</span>,<span class="st">"pubid"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># unfortunately the doi is not linked, so I'll just format all articles:</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">format_publications</span>(scholar_id, <span class="st">"Vieira"</span>) <span class="sc">|&gt;</span> <span class="fu">cat</span>(<span class="at">sep=</span><span class="st">'</span><span class="sc">\n\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Vieira</strong>, ICG., Giles, A., Santo, MM do Espírito., Mesquita, RCG., <strong>Vieira</strong>, DLM., &amp; … (2024). Governance and policy constraints of natural forest regeneration in the Brazilian Amazon. <em>Restoration Ecology, e</em>. e14272</p>
+<p>Ferreira, MC., &amp; <strong>Vieira</strong>, DLM. (2024). Making the most of native seeds: Management techniques interact with seed and seedling traits for enhancing direct seeding success. <em>Forest Ecology and Management</em>. 574, 122353</p>
+<p>Wiederhecker, A., Ferreira, MC., Rodrigues, SB., Sampaio, AB., Schmidt, IB., &amp; … (2024). Ten years of directing seeding restoration in the Brazilian savanna: Lessons learned and the way forward. <em>Journal of Environmental Management</em>. 365, 121576</p>
+<p>Giles, AL., Schietti, J., Rosenfield, MF., Mesquita, RC., <strong>Vieira</strong>, DLM., <strong>Vieira</strong>, ICG., &amp; … (2024). Simple ecological indicators benchmark regeneration success of Amazonian forests. <em>Communications Earth &amp; Environment</em>. 5 (1), 780</p>
+<p>Ataíde, MVR de., Rodrigues, SB., Silva, TR., Coelho, ACS., Wiederhecker, A., &amp; … (2024). Monitoring invasive exotic grass species in ecological restoration areas of the Brazilian savanna using UAV images. <em>Remote Sensing Applications: Society and Environment</em>. 36, 101328</p>
+<p>Tomas, WM., Baggio, R., Berlinck, CN., Camilo, AR., Cunha, CN., &amp; … (2024). Challenges in the conservation and management of legal reserve areas in Brazilian grassland and savanna ecosystems in the face of global climate change. <em>Pesquisa Agropecuária Brasileira</em>. 59, e03491</p>
+<p>Tomas, WM., Baggio, R., Berlinck, CN., Camilo, AR., Cunha, CN., &amp; … (2024). Desafios na conservação e no manejo de áreas de reserva legal em ecossistemas campestres e savânicos brasileiros frente às mudanças climáticas globais. <em>Pesquisa Agropecuária Brasileira</em>. 59, e03491</p>
+<p>JAKOVAC, CC., Nascimento, N., Gallegos, SC., Celentano, D., VIEIRA, DLM., &amp; … (2024). Estratégias para implementar a restauração florestal em grande escala na Amazônia.. <em>In: SCIENCE PANEL FOR THE AMAZON, New York</em>. 2024.[Publicações…]. New York&nbsp;…</p>
+<p>Celentano, D., Malta, E., Ferragutti, A., Gomes, AS., Murer, B., MOTTA, C., &amp; … (2024). Native seeds production for large-scale ecosystems restoration in Brazil: legal bottleneck.. **.</p>
+<p>Carvalho, RL., Resende, AF., Barlow, J., França, FM., Moura, MR., Maciel, R., &amp; … (2023). Pervasive gaps in Amazonian ecological research. <em>Current Biology</em>. 33 (16), 3495-3504. e4</p>
+<p>Gerrits, GM., Waenink, R., Aradottir, AL., Buisson, E., Dutoit, T., Ferreira, MC., &amp; … (2023). Synthesis on the effectiveness of soil translocation for plant community restoration. <em>Journal of Applied Ecology</em>. 60 (4), 714-724</p>
+<p>Rosenfield, MF., Jakovac, CC., <strong>Vieira</strong>, DLM., Poorter, L., Brancalion, PHS., &amp; … (2023). Ecological integrity of tropical secondary forests: concepts and indicators. <em>Biological Reviews</em>. 98 (2), 662-676</p>
+<p>Arroyo-Rodríguez, V., Rito, KF., Farfán, M., Navia, IC., Mora, F., Arreola-Villa, F., &amp; … (2023). Landscape-scale forest cover drives the predictability of forest regeneration across the Neotropics. <em>Proceedings of the Royal Society B</em>. 290 (1990), 20222203</p>
+<p>Laumann, PD., Ferreira, MC., Silva, DA da., &amp; <strong>Vieira</strong>, DLM. (2023). Germination traits explain the success of direct seeding restoration in the seasonal tropics of Brazil. <em>Forest Ecology and Management</em>. 529, 120706</p>
+<p>Silva, TR., Rodrigues, SB., Bringel, JB de Azevedo., Sampaio, AB., Sano, EE., &amp; … (2023). Factors affecting savanna and forest regeneration in pastures across the cerrado. <em>Journal of Environmental Management</em>. 330, 117185</p>
+<p>Horstmann, N., Sevilha, AC., &amp; <strong>Vieira</strong>, DLM. (2023). Graminoid-led natural regeneration of dry savannas after severe degradation. <em>Ecological Engineering</em>. 187, 106850</p>
+<p>Ferreira, MC., Cordeiro, AO de Oliveira., Sampaio, AB., Schmidt, IB., &amp; … (2023). Direct seeding versus seedling planting: survival, biomass, growth, and cost up to 6 years for four tropical seasonal tree species. <em>Restoration Ecology</em>. 31 (4), e13807</p>
+<p>Silva, TR., Silva, TR., Sano, EE., &amp; <strong>Vieira</strong>, DLM. (2023). Mapping the regeneration potential of native vegetation in cultivated pastures of the Brazilian Cerrado. <em>Environmental Monitoring and Assessment</em>. 195 (9), 1038</p>
+<p>Albuquerque, RW., <strong>Vieira</strong>, DLM., Vicente, LE., Araujo, LS de., Ferreira, ME., &amp; … (2023). Comparing forest restoration canopy cover measurements using RGB and multispectral sensors onboard drones.. <em>In: SIMPÓSIO BRASILEIRO DE SENSORIAMENTO REMOTO</em>. 20., 2023, Florianópolis&nbsp;…</p>
+<p>Urzedo, D., Pedrini, S., <strong>Vieira</strong>, DLM., Sampaio, AB., Souza, BDF., &amp; … (2022). Indigenous and local communities can boost seed supply in the UN decade on ecosystem restoration. <em>Ambio</em>. 1-12</p>
+<p>Albuquerque, RW., <strong>Vieira</strong>, DLM., Ferreira, ME., Soares, LP., Olsen, SI., &amp; … (2022). Mapping key indicators of forest restoration in the amazon using a low-cost drone and artificial intelligence. <em>Remote Sensing</em>. 14 (4), 830</p>
+<p>Correia, MRM., Ferreira, MC., Alves, M., Consolaro, HN., &amp; <strong>Vieira</strong>, DLM. (2022). Less is more: Little seed processing required for direct seeding in seasonal tropics. <em>New Forests</em>. 53 (4), 695-719</p>
+<p><strong>Vieira</strong>, DLM., Sano, EE., &amp; Silva, TR. (2022). A classification of cultivated pastures in the Brazilian Cerrado for sustainable intensification and savanna restoration. <em>Ambio</em>. 51 (5), 1219-1226</p>
+<p>Albuquerque, RW., Matsumoto, MH., Calmon, M., Ferreira, ME., <strong>Vieira</strong>, DLM., &amp; … (2022). A protocol for canopy cover monitoring on forest restoration projects using low-cost drones. <em>Open Geosciences</em>. 14 (1), 921-929</p>
+<p>Ribeiro, JF., Kuhlmann, M., Ogata, RS., OLIVEIRA, MC de., <strong>Vieira</strong>, DLM., &amp; … (2022). Guia de plantas do cerrado para recomposição da vegetação nativa.. **.</p>
+<p>Araújo, AR de., Kichel, AN., <strong>Vieira</strong>, DLM., Bungenstab, DJ., Duboc, E., Alves, FV., &amp; … (2022). Technical guidelines for sustainable livestock production with native trees: native carbon (CN).. **.</p>
+<p><strong>Vieira</strong>, DLM., Rodrigues, S., Jakovac, CC., Rocha, GPE da., Reis, F., &amp; Borges, A. (2021). Active Restoration Initiates High Quality Forest Succession In A Deforested Landscape In Amazonia. <em>Forests</em>. 12 (8), 1022</p>
+<p>Silva, TR., Pena, JC., Martello, F., Bettiol, GM., Sano, EE., &amp; <strong>Vieira</strong>, DLM. (2021). Not only exotic grasslands: The scattered trees in cultivated pastures of the Brazilian Cerrado. <em>Agriculture, Ecosystems &amp; Environment</em>. 314, 107422</p>
+<p>Antoniazzi, L., Campos-Filho, EM., &amp; <strong>Vieira</strong>, DLM. (2021). Seed-based restoration: how experiences in Brazil are increasing in both scale and co-benefits. <em>Seed</em>.</p>
+<p>Bruziguessi, EP., Silva, TR., MOREIRA, GDLB., &amp; <strong>Vieira</strong>, DLM. (2021). Sistemas silvipastoris com arvores nativas do cerrado.. **.</p>
+<p>SKORUPA, LA., VIEIRA, DLM., KUHLMANN, M., SAMPAIO, AB., &amp; … (2021). Roteiro para elaboração de um projeto de recomposição de áreas degradadas ou alteradas.. **.</p>
+<p>Skorupa, LA., <strong>Vieira</strong>, DLM., Kuhlmann, M., Sampaio, AB., Moraes, LFD de., &amp; … (2021). Roadmap for the elaboration of a project for the restoration of degraded or altered areas.. **.</p>
+<p>VIEIRA, DLM., SIMON, MF., MEDEIROS, MB de., &amp; REZENDE, GM. (2021). Árvores recomendadas para a coleta de sementes para recomposição da vegetação nativa das áreas de preservação permanente (APP) da Usina Hidrelétrica (UHE) Jirau, Rondônia.. **.</p>
+<p>Raupp, PP., Ferreira, MC., Alves, M., Campos-Filho, EM., Sartorelli, PAR., &amp; … (2020). Direct seeding reduces the costs of tree planting for forest and savanna restoration. <em>Ecological Engineering</em>. 148, 105788</p>
+<p>Pandit, R., Parrotta, JA., Chaudhary, AK., Karlen, DL., <strong>Vieira</strong>, DLM., Anker, Y., &amp; … (2020). A framework to evaluate land degradation and restoration responses for improved planning and decision-making. <em>Ecosystems and People</em>. 16 (1), 1-18</p>
+<p>Elias, PS., &amp; <strong>Vieira</strong>, DLM. (2020). Growth and survival of Campinarana seedlings subject to drought and flooding: implications for ecological restoration. <em>Plant Ecology</em>. 221 (6), 459-474</p>
+<p>Silva, JS., Aldicir, S., Bonesso, SA., Mascia, VDL., Edenise, G., Edson, S., &amp; … (2020). Correction to: Ecological restoration as a strategy for mitigating and adapting to climate change: lessons and challenges from Brazil. <em>Mitigation and Adaptation Strategies for Global Change</em>. 25 (4), 735-736</p>
+<p>Bustamante, MMC., Silva, JS., Scariot, A., Sampaio, AB., Mascia, DL., Garcia, E., &amp; … (2019). Ecological restoration as a strategy for mitigating and adapting to climate change: lessons and challenges from Brazil. <em>Mitigation and Adaptation Strategies for Global Change</em>. 24, 1249-1270</p>
+<p>Schmidt, IB., Urzedo, DI De., Piña‐Rodrigues, FCM., <strong>Vieira</strong>, DLM., &amp; … (2019). Community‐based native seed production for restoration in Brazil–the role of science and policy. <em>Plant Biology</em>. 21 (3), 389-397</p>
+<p>Freitas, MG., Rodrigues, SB., Campos-Filho, EM., Carmo, GHP do., &amp; … (2019). Evaluating the success of direct seeding for tropical forest restoration over ten years. <em>Forest ecology and management</em>. 438, 224-232</p>
+<p>Miccolis, A., Peneireiro, FM., <strong>Vieira</strong>, DLM., Marques, HR., &amp; HOFFMANN, MRM. (2019). Restoration through agroforestry: options for reconciling livelihoods with conservation in the Cerrado and Caatinga biomes in Brazil. <em>Experimental Agriculture</em>. 55 (S1), 208-225</p>
+<p>Sampaio, AB., <strong>Vieira</strong>, DLM., Holl, KD., Pellizzaro, KF., Alves, M., Coutinho, AG., &amp; … (2019). Lessons on direct seeding to restore Neotropical savanna. <em>Ecological Engineering</em>. 138, 148-154</p>
+<p>Coutinho, AG., Alves, M., Sampaio, AB., Schmidt, IB., &amp; <strong>Vieira</strong>, DLM. (2019). Effects of initial functional‐group composition on assembly trajectory in savanna restoration. <em>Applied Vegetation Science</em>. 22 (1), 61-70</p>
+<p>Schmidt, IB., Ferreira, MC., Sampaio, AB., Walter, BMT., <strong>Vieira</strong>, DLM., &amp; Holl, KD. (2019). Tailoring restoration interventions to the grassland‐savanna‐forest complex in central Brazil. <em>Restoration Ecology</em>. 27 (5), 942-948</p>
+<p>Rodrigues, SB., Freitas, MG., Campos-Filho, EM., Carmo, GHP do., &amp; … (2019). Direct seeded and colonizing species guarantee successful early restoration of South Amazon forests. <em>Forest Ecology and Management</em>. 451, 117559</p>
+<p>Rezende, GM., &amp; <strong>Vieira</strong>, DLM. (2019). Forest restoration in southern Amazonia: Soil preparation triggers natural regeneration. <em>Forest Ecology and Management</em>. 433, 93-104</p>
+<p>Miccolis, A., Peneireiro, FM., Marques, HR., <strong>Vieira</strong>, DL., Arco-Verde, MF., &amp; … (2019). Agroforestry Systems for Ecological Restoration: How to Reconcile Conservation and Production: Options for Brazil’s Cerrado and Caatinga Biomes. <em>World Agroforestry Centre (ICRAF)</em>.</p>
+<p>Consolaro, H., Alves, M., Ferreira, MC., &amp; <strong>Vieira</strong>, DLM. (2019). Sementes, plântulas e restauração no sudeste goiano.. <em>Catalão: Athalaia</em>. 2019.</p>
+<p>Crouzeilles, R., Rodrigues, RR., Strassburg, BBN., Brancalion, PHS., &amp; … (2019). Relatório temático sobre restauração de paisagens e ecossistemas.. **.</p>
+<p>Rodrigues, RR., Jakovac, CC., Moraes, LF., <strong>Vieira</strong>, D., Sampaio, AB., Ganade, G., &amp; … (2019). Práticas de restauração nos diferentes biomas brasileiros. <em>BPBES/IIS: Relatório temático sobre restauração de paisagens e ecossistemas&nbsp;…</em>.</p>
+<p>Crouzeilles, R., Rodrigues, RR., Strassburg, BBN., Brancalion, PHS., &amp; … (2019). Como dar escala. <em>BPBES/IIS: Relatório Temático sobre Restauração de Paisagens e Ecossistemas&nbsp;…</em>.</p>
+<p>OLIVEIRA, MN., JUNQUEIRA, AMR., VIEIRA, DLM., &amp; OLIVEIRA, DR. (2018). Cobertura do solo com brachiaria e a emergência de espécies arbóreas do cerrado, culturas anuais e plantas espontâneas. <em>Cadernos de Agroecologia</em>. 13 (1)</p>
+<p>Pellizzaro, KF., Cordeiro, AOO., Alves, M., Motta, CP., Rezende, GM., Silva, RRP., &amp; … (2017). “Cerrado” restoration by direct seeding: field establishment and initial growth of 75 trees, shrubs and grass species. <em>Brazilian Journal of Botany</em>. 40, 681-693</p>
+<p>Silva, RRP., &amp; <strong>Vieira</strong>, DLM. (2017). Direct seeding of 16 Brazilian savanna trees: responses to seed burial, mulching and an invasive grass. <em>Applied Vegetation Science</em>. 20 (3), 410-421</p>
+<p>Ferreira, MC., &amp; <strong>Vieira</strong>, DLM. (2017). Topsoil for restoration: Resprouting of root fragments and germination of pioneers trigger tropical dry forest regeneration. <em>Ecological Engineering</em>. 103, 1-12</p>
+<p>Ferreira, MC., Rodrigues, SB., &amp; <strong>Vieira</strong>, DLM. (2017). REGENERATION THROUGH RESPROUTING AFTER CLEAR-CUTTING AND TOPSOIL STRIPPING IN A TROPICAL DRY FOREST IN CENTRAL BRAZIL1. <em>Revista Árvore</em>. 41, e410218</p>
+<p>Sousa, AP., &amp; <strong>Vieira</strong>, DLM. (2017). Protocolo de monitoramento da recomposição da vegetação nativa no Distrito Federal. <em>WWF. Brasília</em>.</p>
+<p><strong>Vieira</strong>, DLM., Sartorelli, PAR., SOUSA, AP., &amp; Rezende, GM. (2017). Avaliação de indicadores da recomposição da vegetação nativa no Distrito Federal e em Mato Grosso.. <em>[Sl]: INPUT, Iniciativa para o Uso da Terra</em>. 2017.</p>
+<p>VIEIRA, DLM., Sampaio, AB., SKORUPA, LA., ARCO-VERDE, MF., &amp; … (2017). Espécies arbóreas e estratégias para a recomposição da vegetação nativa no bioma cerrado.. **.</p>
+<p><strong>Vieira</strong>, DLM., Sampaio, AB., Schmidt, IB., Ribeiro, JF., Junqueira, R., &amp; … (2017). Métodos adaptados para a restauração de savanas e florestas secas do Cerrado.. <em>In: SIMPÓSIO DE RESTAURAÇÃO ECOLÓGICA</em>. 7., 2017, São Paulo, SP. Tecnologia e&nbsp;…</p>
+<p>Ferreira, MC., Rodrigues, SB., &amp; <strong>Vieira</strong>, DLM. (2017). REGENERAÇÃO VIA REBROTA APÓS CORTE RASO E REMOÇÃO DA CAMADA SUPERFICIAL DO SOLO DE FLORESTA ESTACIONAL DECIDUAL NO BRASIL CENTRAL. <em>Revista Árvore</em>. 41, e410218</p>
+<p>VIEIRA, DLM., SAMPAIO, AB., SKORUPA, LA., ARCO-VERDE, MF., &amp; … (2017). Woody species and strategies for restoration in the Cerrado biome.. **.</p>
+<p>Rocha, GPE., <strong>Vieira</strong>, DLM., &amp; Simon, MF. (2016). Fast natural regeneration in abandoned pastures in southern Amazonia. <em>Forest Ecology and Management</em>. 370, 93-101</p>
+<p>Miccolis, A., PENEIREIRO, FM., MARQUES, HR., VIEIRA, DLM., &amp; … (2016). Restauração ecológica com sistemas agroflorestais: como conciliar conservação com produção: opções para Cerrado e Caatinga.. **.</p>
+<p>Miccolis, A., Peneireiro, FM., Marques, HR., <strong>Vieira</strong>, DLM., Arco-Verde, MF., &amp; … (2016). Restauração Ecológica com Sistemas Agroflorestais: como conciliar conservação com produção. <em>Brasília, DF: Instituto Sociedade, População e Natureza</em>. 3</p>
+<p>Miccolis, A., Peneireiro, FM., Marques, HR., <strong>Vieira</strong>, DLM., Arcoverde, MF., &amp; … (2016). Agroforestry Systems for Ecological Restoration: How to reconcile conservation and production. <em>Options for Brazil’s Cerrado and Caatinga biomes</em>.</p>
+<p>VIEIRA, DLM., RIBEIRO, JF., SAMPAIO, AB., CAMPELLO, EFC., &amp; SKORUPA, LA. (2016). Métodos de recomposição da vegetação nativa.. <em>Brasília, DF: Embrapa Recursos Genéticos e Biotecnologia</em>. 2016.</p>
+<p>Ferreira, MC., Walter, BMT., &amp; <strong>Vieira</strong>, DLM. (2015). Topsoil translocation for Brazilian savanna restoration: propagation of herbs, shrubs, and trees. <em>Restoration ecology</em>. 23 (6), 723-728</p>
+<p>Silva, RRP., Oliveira, DR., Rocha, GPE da., &amp; <strong>Vieira</strong>, DLM. (2015). Direct seeding of Brazilian savanna trees: effects of plant cover and fertilization on seedling establishment and growth. <em>Restoration Ecology</em>. 23 (4), 393-401</p>
+<p>Sampaio, AB., <strong>Vieira</strong>, DLM., Cordeiro, AOO., Aquino, FG., Sousa, AP., &amp; … (2015). Guia de restauração do Cerrado: volume 1: semeadura direta.. **.</p>
+<p>Guerin, N., Isernhagen, I., <strong>Vieira</strong>, DLM., Campos-Filho, EM., &amp; Campos, RJB. (2015). Avanços e próximos desafios da semeadura direta para restauração ecológica. <em>Restauração ecológica de ecossistemas degradados</em>. 2, 331-376</p>
+<p>Sampaio, AB., <strong>Vieira</strong>, DLM., CORdEIRO, AOO., Aquino, FDG., Sousa, ADP., &amp; … (2015). Guia de restauração do Cerrado. <em>Semeadura direta de sementes. Universidade de Brasília-UNB, Rede de Sementes&nbsp;…</em>.</p>
+<p>Ferreira, JMC., <strong>Vieira</strong>, DLM., &amp; Walter, BMT. (2015). Transposição de” Topsoil”(camada superficial do solo) para a restauração ecológica no Cerrado.. <em>Brasília, DF: Embrapa Recursos Genéticos e Biotecnologia</em>. 2015.</p>
+<p>RODRIGUES, RFA., MOTA, DM da., JUNIOR, JF da SILVA., VIEIRA, DLM., &amp; … (2015). As catadoras de mangaba em defesa dos seus modos de vida.. <em>Aracaju: Embrapa Tabuleiros Costeiros</em>. 2015.</p>
+<p><strong>Vieira</strong>, DLM., Dourado, BF., MOREIRA, NS., Figueiredo, IB., Pereira, AVB., &amp; … (2014). Agricultores que cultivam árvores no Cerrado.. <em>Brasília, DF: WWF Brasil: Embrapa Recursos Genéticos e Biotecnologia</em>. 2014.</p>
+<p><strong>Vieira</strong>, DLM., Coutinho, AG., &amp; Rocha, GPE da. (2013). Resprouting ability of dry forest tree species after disturbance does not relate to propagation possibility by stem and root cuttings. <em>Restoration Ecology</em>. 21 (3), 305-311</p>
+<p>Hermuche, PM., <strong>Vieira</strong>, DLM., &amp; Sano, EE. (2013). Modeling tree cover changes in a pasture-dominated landscape by adopting silvopastoral practices in a dry forest region in Central Brazil. <em>Agroforestry systems</em>. 87, 881-890</p>
+<p><strong>Vieira</strong>, DLM., Holl, KD., &amp; Peneireiro, FM. (2009). Agro‐successional restoration as a strategy to facilitate tropical forest recovery. <em>Restoration ecology</em>. 17 (4), 451-459</p>
+<p><strong>Vieira</strong>, DLM., RODRIGUES, RFA., &amp; RODRIGUES, RFDEA. (2009). Mapa do extrativismo da mangaba em Sergipe: ameaças e demandas.. <em>Aracaju: Embrapa Tabuleiros Costeiros</em>. 2009.</p>
+<p>VIEIRA, DLM., FONSECA, TA., &amp; GOMES, JBV. (2009). Árvores isoladas promovem a regeneração da restinga em Sergipe: comparação entre espécies.. <em>Aracaju: Embrapa Tabuleiros Costeiros</em>. 2009.</p>
+<p>SILVA, ACC., &amp; VIEIRA, DLM. (2009). Manual de interpretação de trilhas: explorando os conceitos de ecologia e conservação de floresta na Reserva do Caju.. <em>Aracaju: Embrapa Tabuleiros Costeiros</em>. 2009.</p>
+<p><strong>Vieira</strong>, DLM., Lima, VV de., Sevilha, AC., &amp; Scariot, A. (2008). Consequences of dry-season seed dispersal on seedling establishment of dry forest trees: Should we store seeds until the rains?. <em>Forest Ecology and Management</em>. 256 (3), 471-481</p>
+<p>Lima, VVF., <strong>Vieira</strong>, DLM., Sevilha, AC., &amp; Salomão, AN. (2008). Germinação de espécies arbóreas de floresta estacional decidual do vale do rio Paranã em Goiás após três tipos de armazenamento por até 15 meses. <em>Biota Neotropica</em>. 8, 89-97</p>
+<p><strong>Vieira</strong>, DLM., &amp; Scariot, A. (2008). Environmental variables and tree population structures in deciduous forests of Central Brazil with different levels of logging. <em>Brazilian Archives of Biology and Technology</em>. 51, 419-431</p>
+<p>Myster, RW., Scariot, A., <strong>Vieira</strong>, DLM., Sampaio, AB., Guarino, E., &amp; Sevilha, A. (2008). Recruitment of dry forest tree species in central Brazil pastures. <em>Post-agricultural succession in the Neotropics</em>. 231-244</p>
+<p><strong>Vieira</strong>, DLM., Lima, VV de., &amp; Sevilha, AC. (2008). Capacidade de rebrota de plântula de 12 espécies arbóreas de mata seca.. <em>In: CONGRESSO NACIONAL DE BOTÂNICA</em>. 59.; CONGRESSO LATINOAMERICANO Y DEL&nbsp;…</p>
+<p><strong>Vieira</strong>, DLM., Malta, J., &amp; Arruda, N. (2008). Vegetação e estimativa da quantidade de mangabeiras no assentamento São Sebastião, Pirambu, SE.. <em>Aracaju: Embrapa Tabuleiros Costeiros</em>. 2008.</p>
+<p><strong>Vieira</strong>, DLM., Scariot, A., &amp; Holl, KD. (2007). Effects of habitat, cattle grazing and selective logging on seedling survival and growth in dry forests of Central Brazil. <em>Biotropica</em>. 39 (2), 269-274</p>
+<p>Lima, VF., Salomão, AN., Mascia, DL., Sevilha, AC., &amp; Mundin, RC. (2007). Germinação de espécies de floresta decidual após armazenamento: implicações para restauração. <em>Revista Brasileira de Biociências</em>. 5 (S2), 96-98</p>
+<p><strong>Vieira</strong>, DLM., &amp; Scariot, A. (2006). Principles of natural regeneration of tropical dry forests for restoration. <em>Restoration ecology</em>. 14 (1), 11-20</p>
+<p><strong>Vieira</strong>, DLM., Scariot, A., Sampaio, AB., &amp; Holl, KD. (2006). Tropical dry-forest regeneration from root suckers in Central Brazil. <em>Journal of tropical ecology</em>. 22 (3), 353-357</p>
+<p><strong>Vieira</strong>, DLM., &amp; Scariot, A. (2006). Effects of logging, liana tangles and pasture on seed fate of dry forest tree species in Central Brazil. <em>Forest Ecology and Management</em>. 230 (1-3), 197-205</p>
+<p><strong>Vieira</strong>, DLM. (2006). Regeneração natural de florestas secas: Implicações para a restauração. <em>Dr.&nbsp;Thesis. Departamento de Ecologia, Universidade de Brasília, Brasília, DF&nbsp;…</em>.</p>
+<p>Palmer, MA., Pando, M., Pareliussen, I., Pearce, B., Peteers, A., Peter, D., &amp; … (2006). Olsson EGA, 196 Omi PN, 587 Otsamo R, 662 Ottonetti L, 60. <em>Restoration Ecology</em>.</p>
+<p>LIMA, VVF., SALOMÃO, AN., VIEIRA, DLM., MUNDIN, RC., &amp; SEVILHA, AC. (2006). Respostas de sementes de floresta estacional decidual ao congelamento em temperaturas subzero (-20 e-196° C).. <em>In: ENCONTRO DO TALENTO ESTUDANTIL DA EMBRAPA RECURSOS GENÉTICOS E&nbsp;…</em>.</p>
+<p>CIAMPI, AY., VIEIRA, DLM., NAKASU, ET., MACHADO, FRB., SALOMÃO, AN., &amp; … (2005). Conservation strategies of endangered tree species in Central Brazil.. <em>In: ANNUAL MEETING OF THE SOCIETY FOR CONSERVATION BIOLOGY</em>. 19., 2005&nbsp;…</p>
+<p>NAKASU, ET., CIAMPI, AY., SALOMÃO, AN., SEVILHA, AC., VIEIRA, D., &amp; … (2005). Aplicação de marcadores microssatélites em Amburana cearensis e Cedrella fissilis na definição de estratégias de conservação.. <em>In: ENCONTRO DO TALENTO ESTUDANTIL DA EMBRAPA RECURSOS GENÉTICOS E&nbsp;…</em>.</p>
+<p>FERNÁNDEZ, FAS., ALMEIDA, EAB., Jr, L CULLEN., MARTINS, CS., &amp; … (2003). Manejo das populações naturais nos fragmentos. <em>Fragmentação de ecossistemas: causas, efeitos sobre a biodiversidade e&nbsp;…</em>.</p>
+<p>Guerra, BR., Zuanon, J., &amp; Venticinque, EM. (2003). Galling insects (Diptera: Cecidomyiidae) survive inundation during host plant flooding in Central Amazonia. <em>Biotropica</em>. 35 (1), 115-119</p>
+<p>Zuanon, JAS., Venticinque, EM., Marinelli, CE., <strong>Vieira</strong>, DLM., Fernandes, GW., &amp; … (2003). Galling insects (Diptera: Cecidomyiidae) survive inundation during host plant flooding in Central Amazoon. <em>Biotropica (Lawrence, KS)</em>.</p>
+<p>CATELAN, RC., NAKASU, EYT., VIEIRA, DLM., CIAMPI, AV., &amp; SCARIOT, A. (2003). Análise da variabilidade genética de cerejeira Amburana cearensis utilizando marcador molecular rapd.. <em>ENCONTRO DO TALENTO ESTUDANTIL DA EMBRAPA RECURSOS GENETICOS E BIOTECNOLOGIA&nbsp;…</em>.</p>
+<p><strong>Vieira</strong>, DLM., Aquino, FG., Brito, MA., Fernandes-Bulhão, C., &amp; Henriques, RPB. (2002). Síndromes de dispersão de espécies arbustivo-arbóreas em cerrado sensu stricto do Brasil Central e savanas amazônicas. <em>Brazilian Journal of Botany</em>. 25, 215-220</p>
+<p><strong>Vieira</strong>, DLM. (2002). Efeitos da exploraçao madeireira na estrutura e regeneraçao de populaçoes de árvores de floresta estacional decidual. <em>Dissertation, Universidade de Brasılia, Brasılia, Brazil</em>.</p>
+<p>DLM, V. (2002). Efeitos da exploraçao madeireira na estrutura populacional e regeneraçao de árvores de floresta estacional decidual. <em>Dissertation (Master in Ecology), Universidade de Brasilia</em>.</p>
+<p>VIEIRA, DLM., AQUINO, FG., BRITO, MA., FERNANDES-BULHÃO, C., &amp; … (2002). Dispersal syndromes of shrub-woody species in the cerrado sensu stricto vegetation of Central Brazil and Amazonian savannas. <em>Brazilian Journal of Botany</em>. 25, 215-220</p>
+<p>Marinelli, CE., Ferreira, KM., <strong>Vieira</strong>, DLM., Jurinitz, CF., Guerra, BR., &amp; Aguiar, AJC. (2001). Atributos ecomorfológicos para determinação de guildas tróficas da ictiofauna de igapó no arquipélago das Anavilhanas, Amazônia Central. <em>Curso de Campo Ecologia da Floresta Amazônica–</em>. –2001. Livro do curso de, 59-62</p>
+<p>Ferreira, KM., Scoss, LM., <strong>Vieira</strong>, DLM., Ceotto, PC., &amp; Ruiz, B. (2001). Efeito do corte seletivo na regeneração da vegetação de clareiras na Amazônia Central. <em>Reserva Florestal Adolpho Ducke-Floresta de terra firme</em>. 15</p>
+<p>Cogni, R., <strong>Vieira</strong>, DLM., Marinelli, CE., Jurinitz, CF., &amp; Guerra, BR. (2001). Efeito da inundação da planta hospedeira sobre insetos galhadores em um igapó da Amazônia Central. <em>Reserva Florestal Adolpho Ducke-Floresta de terra firme</em>. 47</p>
+<p><strong>Vieira</strong>, DLM., &amp; Scariot, A. (2001). Abertura de dossel: indicador do estado de conservação de fragmentos de florestas deciduais do Vale do Paranã-GO.. <em>In: ENCONTRO DO TALENTO ESTUDANTIL DA EMBRAPA RECURSOS GENÉTICOS E&nbsp;…</em>.</p>
+<p>NASCIMENTO, ART., VIEIRA, DLM., &amp; SCARIOT, A. (2001). Regeneração da floresta decídua em uma pastagem abandonada no Vale do Paranã-GO.. <em>In: ENCONTRO DO TALENTO ESTUDANTIL DA EMBRAPA RECURSOS GENÉTICOS E&nbsp;…</em>.</p>
+<p>Bustamante, MM., Silva, JS., Scariot, A., Sampaio, AB., Mascia, DL., &amp; Garcia, E. (NA). &amp; Nobre, C.(2019). <em>Ecological restoration as a strategy for mitigating and adapting to climate&nbsp;…</em>.</p>
+<p>BAGGIO, R., BERLINCK, CN., CAMILO, AR., TOMAS, WM., &amp; … (NA). Desafios na conservação e no manejo de áreas de reserva legal em ecossistemas campestres e savânicos brasileiros frente às mudanças climáticas globais. **.</p>
+<p>Silva¹, RRP., Rocha¹, GPE da., Brandão, DMT., &amp; <strong>Vieira</strong>, DLM. (NA). RESTAURAÇÃO DO CERRADO POR SEMEADURA DIRETA-CRESCIMENTO DE SEIS ESPÉCIES ARBÓREAS AOS DOIS ANOS. **.</p>
+<p>Ruiz, B., Scoss, LM., &amp; <strong>Vieira</strong>, DLM. (NA). Efeito do manejo e de clareiras sobre a regeneração natural de Miconia. <em>Reserva Florestal Adolpho Ducke-Floresta de terra firme</em>. 2</p>
+<p>Marinelli, CE., <strong>Vieira</strong>, DLM., Jurinitz, CF., Guerra, BR., &amp; Cogni, R. (NA). Composição funcional trófica de insetos bentônicos emergentes no gradiente topográfico de uma área de várzea na Ilha da Marchantaria, Iranduba, AM. <em>Reserva Florestal Adolpho Ducke-Floresta de terra firme</em>. 4</p>
+<p>Scoss, LM., <strong>Vieira</strong>, DLM., Ferreira, KM., Ceotto, PC., &amp; Ruiz, B. (NA). Influência do habitat e da temperatura sobre o início da atividade de libélulas (Odonata). <em>Reserva Florestal Adolpho Ducke-Floresta de terra firme</em>.</p>
+<p>Marinelli, CE., <strong>Vieira</strong>, DLM., Jurinitz, CF., Guerra, BR., &amp; Cogni, R. (NA). Zonação de herbáceas aquáticas no gradiente topográfico de um sistema de várzea da Ilha da Marchantaria, Amazônia Central. <em>Reserva Florestal Adolpho Ducke-Floresta de terra firme</em>. 4</p>
+<p>Cogni, R., <strong>Vieira</strong>, DLM., Marinelli, CE., Jurinitz, CF., &amp; Guerra, BR. (NA). Seleção intra e inter individual para sítios de oviposição em Maieta guianensis (Melastomataceae) pela aranha Argyrodes sp.(Araneaea: Theridiidae). <em>Reserva Florestal Adolpho Ducke-Floresta de terra firme</em>. 6</p>
+<p><strong>Vieira</strong>, DLM., Jurinitz, CF., Lamberts, AH., Scoss, L., Darrigo, MR., &amp; Timo, T. (NA). Guaribas (Alouatta seniculus, Primates Cebidae) influenciam a distribuição de espécies por eles dispersadas?. <em>Reserva Florestal Adolpho Ducke-Floresta de terra firme</em>. 8</p>
+</section>
+<section id="orcid" class="level1">
+<h1>ORCID</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rorcid)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
