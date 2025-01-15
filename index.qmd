@@ -11,16 +11,18 @@ editor: visual
 #| results: asis
 library(scholar)
 
-scholar_id <- "3n0aRksAAAAJ" 
+scholar_id <- "3n0aRksAAAAJ" # Daniel Luis Mascia Vieira
+scholar_id <- "0f_YV1wAAAAJ" # Pedro Brancalion
+scholar_id <- "lauW7mQAAAAJ" # Otavio C. Campoe
+
 # this is your author scholar Id, it'll be found in the adress of your scholar profile after user=and before &
-# exemple with Daniel Luis Mascia Vieira
 
 #Get publication record from scholar
 df <- get_publications(scholar_id)
 colnames(df) <- c("title","authors","journal","number",
                   "total_citations","publication_date","cid","pubid")
 # unfortunately the doi is not linked, so I'll just format all articles:
-format_publications(scholar_id, "Vieira") |> cat(sep='\n\n')
+format_publications(scholar_id, "Campoe") |> cat(sep='\n\n')
 ```
 
 # ORCID
