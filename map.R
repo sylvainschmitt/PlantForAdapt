@@ -22,16 +22,26 @@ fg <- tibble(
     st_as_sf(coords = c("x", "y"), crs = 32622) %>% 
     st_transform(crs = 4326)
 sites <- bind_rows(br, fg)
+cay <- tibble(
+  label = "Cayenne",
+  lat = 4.93063580606094,
+  lon = -52.31546696222925
+) %>% 
+  st_as_sf(coords = c("lon", "lat"), crs = 4326)
 sa <- ne_countries(scale = 'medium', type = 'map_units', returnclass = 'sf') %>% 
   st_crop(sites %>% st_buffer(10^6))
-fg_zoom <- ne_countries(scale = 'medium', type = 'map_units', returnclass = 'sf') %>% 
-  st_crop(xmin = -54.6028, xmax = -51.6346, ymax = 5.7507, ymin = 2.1122)
+fg_zoom <- ne_countries(scale = 10, type = 'map_units', returnclass = 'sf') %>% 
+  st_make_valid() %>% 
+  st_crop(xmin = -52.7, xmax = -52.1, ymax = 5.5, ymin = 4.5)
+# fg %>% st_buffer(10^5) %>% st_bbox()
 g_sub <- ggplot() + 
-    geom_sf(data = fg_zoom, fill = NA, col = "darkgrey") +
-    geom_sf(data = fg, size = .5, colour="black", pch=21, fill = "red") +
-    theme_bw() +
-    annotation_scale(location = "br") +
-  theme_void()
+  geom_sf(data = fg_zoom, fill = NA, col = "darkgrey") +
+  geom_sf(data = cay, size = 3, colour="black", pch=21, fill = "black") +
+  geom_sf_text(data = cay, aes(label = label), nudge_y = .1, size = 2.5) +
+  geom_sf(data = fg, size = 2, colour="black", pch=21, fill = "red") +
+  annotation_scale(location = "br") +
+  theme_void() +
+  theme(panel.background = element_rect(fill = 'white', colour = 'white'))
 g <- ggplot() + 
   geom_sf(data = sa, fill = NA, col = "darkgrey") +
   geom_sf(data = sites, size = 3, colour="black",pch=21, aes(fill = Site)) +
